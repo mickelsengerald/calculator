@@ -4,8 +4,9 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { operationSlice } from "@/redux/features/operationSlice";
 import { isValidCharacter } from "./../helpers/validators";
 import {useRef} from "react"
+import { ToggleProps } from "@/app/page";
 
-function CalculatorLogic() {
+function CalculatorLogic({onToggle}: ToggleProps) {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const op = useAppSelector(state => state.operation.input);
@@ -46,6 +47,7 @@ function CalculatorLogic() {
             <button onClick={() => dispatch(operationSlice.actions.evaluate())}>=</button>
             <button onClick={() => dispatch(operationSlice.actions.clear())}>AC</button>
             <button onClick={() => dispatch(operationSlice.actions.deleteLastCharacter())}>Back</button>
+            <button onClick={onToggle}>History</button>
         </div>
     )
 }

@@ -103,6 +103,15 @@ export const operationSlice = createSlice({
         },
         deleteLastCharacter: (state) => {
             state.input = state.input.slice(0, -1);
+        },
+        deleteOperationAndResult: (state, action: PayloadAction<number>) => {
+            const indexToDelete = action.payload;
+            state.historyOp.splice(indexToDelete, 1);
+            state.historyResult.splice(indexToDelete, 1);
+        },
+        clearHistory: (state) => {
+            state.historyOp = [];
+            state.historyResult = [];
         }
     }
 });
@@ -123,5 +132,5 @@ function evaluateExpression(expr: string): string {
     }
 }
 
-export const { appendInput, evaluate, clear, deleteLastCharacter } = operationSlice.actions;
+export const { appendInput, evaluate, clear, deleteLastCharacter, deleteOperationAndResult, clearHistory } = operationSlice.actions;
 export default operationSlice.reducer;
