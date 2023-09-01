@@ -10,6 +10,7 @@ import { getJoke } from "@/helpers/getJoke";
 import {PiClockClockwiseBold} from 'react-icons/pi'
 import {GiCardJoker} from 'react-icons/gi'
 
+
 function CalculatorLogic({ onToggle }: ToggleProps) {
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -27,16 +28,16 @@ function CalculatorLogic({ onToggle }: ToggleProps) {
 
     function handleKeyDown(event: React.KeyboardEvent) {
         if (isValidCharacter(event.key)) {
-        dispatch(operationSlice.actions.appendInput(event.key));
+            dispatch(operationSlice.actions.appendInput(event.key));
         } else if (event.key === "Enter") {
-        dispatch(operationSlice.actions.evaluate());
+            dispatch(operationSlice.actions.evaluate());
         } else if (event.key === "Escape") {
-        dispatch(operationSlice.actions.clear());
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
+            dispatch(operationSlice.actions.clear());
+            if (inputRef.current) {
+                inputRef.current.focus();
+            }
         } else if (event.key === "Backspace") {
-        dispatch(operationSlice.actions.deleteLastCharacter());
+            dispatch(operationSlice.actions.deleteLastCharacter());
         }
     }
 
@@ -48,14 +49,12 @@ function CalculatorLogic({ onToggle }: ToggleProps) {
             </div>
             <h3 className={styles.littleText}>{lastOperation}</h3>
             <input className={styles.bigText} value={op} readOnly onKeyDown={handleKeyDown} />
-
             <div className={styles.divider}></div>
-            
             {[row1, row2, row3, row4, row5].map((row, index) => (
                 <div key={index} className={styles.row}>
                 {row.map((btn) => (
                     <button
-                    className={styles.button}
+                    className={`${styles.button} ${isNaN(Number(btn)) ? styles.notNumber : styles.number}`}
                     key={btn}
                     onClick={() => {
                         if (btn === "AC") {
@@ -72,8 +71,7 @@ function CalculatorLogic({ onToggle }: ToggleProps) {
                 ))}
                 </div>
             ))}
-
-            <button className={styles.button} onClick={() => dispatch(operationSlice.actions.evaluate())}>
+            <button className={styles.btnEqual} onClick={() => dispatch(operationSlice.actions.evaluate())}>
                 =
             </button>
         </div>

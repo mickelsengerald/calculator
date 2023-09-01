@@ -7,13 +7,11 @@ export function getJoke(): void {
             if (data.type === "single") {
                 Swal.fire({
                     text: data.joke,
-                    icon: 'info',
                     confirmButtonText: '(≧∇≦)ﾉ'
                 });
             } else {
                 Swal.fire({
                     text: `${data.setup}... ${data.delivery}`,
-                    icon: 'info',
                     confirmButtonText: '(≧∇≦)ﾉ'
                 });
             }

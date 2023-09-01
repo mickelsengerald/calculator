@@ -17,6 +17,30 @@
     color: $color-white; 
     margin: 2px;
     @include btnProperties;
+
+    &:hover {
+        background-color: $color-blue;
+        color: $color-white;
+    }
+}
+
+.notNumber{
+    color: $color-blue
+}
+
+.btnEqual{
+    background-color: $color-bg;
+    border-radius: 10px; 
+    border-color: $color-blue;
+    color: $color-blue;
+    margin: 2px;
+    @include btnProperties;
+    width: 133px;
+
+    &:hover {
+        background-color: $color-blue;
+        color: $color-white;
+    }
 }
 
 .littleText { 
