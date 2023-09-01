@@ -4,6 +4,7 @@ import { ToggleProps } from "@/app/page";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { operationSlice } from "@/redux/features/operationSlice";
 import styles from "./calculatorHistory.module.scss";
+import {TbTrashX} from 'react-icons/tb'
 
 function CalculatorHistory({ onToggle }: ToggleProps) {
 
@@ -31,7 +32,7 @@ function CalculatorHistory({ onToggle }: ToggleProps) {
                     <div key={index}>
                         <div className={styles.operationContainer}>
                             <h3>{operation}</h3>
-                            <button onClick={() => handleDelete(index)}>Ǜ</button>
+                            <button onClick={() => handleDelete(index)}><TbTrashX/></button>
                         </div>
                         <h2 className={styles.bigText}>{historyResult[historyOp.length - 1 - index]}</h2>
                         <div className={styles.divider}></div>

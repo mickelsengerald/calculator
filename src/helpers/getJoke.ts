@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-export function getJoke() {
+export function getJoke(): void {
     fetch("https://v2.jokeapi.dev/joke/Programming?lang=en")
         .then(response => response.json())
         .then(data => {
@@ -8,13 +8,13 @@ export function getJoke() {
                 Swal.fire({
                     text: data.joke,
                     icon: 'info',
-                    confirmButtonText: '👏👏👏'
+                    confirmButtonText: '(≧∇≦)ﾉ'
                 });
             } else {
                 Swal.fire({
                     text: `${data.setup}... ${data.delivery}`,
                     icon: 'info',
-                    confirmButtonText: '👏👏👏'
+                    confirmButtonText: '(≧∇≦)ﾉ'
                 });
             }
         })
@@ -23,7 +23,7 @@ export function getJoke() {
             Swal.fire({
                 text: 'ERROR',
                 icon: 'error',
-                confirmButtonText: '😢'
+                confirmButtonText: '{{{(>_<)}}}'
             });
         });
 }

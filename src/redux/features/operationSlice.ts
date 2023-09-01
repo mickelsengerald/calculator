@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { isValidCharacter, isValidOperator } from '@/helpers/validators';
+import Swal from 'sweetalert2';
+import { evaluateExpression } from '@/helpers/utils';
 
 interface OperationState {
     input: string;
@@ -21,7 +23,16 @@ export const operationSlice = createSlice({
             const lastChar = state.input[state.input.length - 1];
             const secondLastChar = state.input[state.input.length - 2];
 
-            if (state.input === "ERROR") {
+            if (state.input.length >= 14) {
+                Swal.fire({
+                    text: "Input limit is 14 characters including symbols and numbers",
+                    icon: 'info',
+                    confirmButtonText: '（︶^︶）'
+                });
+                return;
+            }
+
+            if (state.input === "SYNTAX ERROR") {
                 state.input = "";
             }
 
@@ -32,7 +43,7 @@ export const operationSlice = createSlice({
             }
 
             if (action.payload === "%" && isValidOperator(lastChar)) {
-                state.input = "ERROR";
+                state.input = "SYNTAX ERROR";
                 return;
             }
 
@@ -48,6 +59,10 @@ export const operationSlice = createSlice({
                 return;
             }
 
+            if (action.payload === "." && state.historyResult.includes(state.input)) {
+                return;
+            }
+
             if (action.payload === "." && state.input.includes(".")) {
                 const lastOperatorIndex = Math.max(
                     state.input.lastIndexOf("+"),
@@ -57,6 +72,15 @@ export const operationSlice = createSlice({
                 );
                 const fragmentAfterLastOperator = state.input.slice(lastOperatorIndex + 1);
                 if (fragmentAfterLastOperator.includes(".")) {
+                    return;
+                }
+            }
+
+            if (action.payload === ")") {
+                const openBracketsCount = state.input.split("(").length - 1;
+                const closeBracketsCount = state.input.split(")").length - 1;
+            
+                if (closeBracketsCount >= openBracketsCount) {
                     return;
                 }
             }
@@ -76,21 +100,21 @@ export const operationSlice = createSlice({
         evaluate: (state) => {
             const lastChar = state.input[state.input.length - 1];
 
-            if (state.input === "ERROR") {
+            if (state.input === "SYNTAX ERROR") {
                 state.input = "";
                 return;
             }
 
             if (isValidOperator(lastChar)) {
-                state.input = "ERROR";
+                state.input = "SYNTAX ERROR";
                 return;
             }
 
             const currentOperation = state.input;
             const result = evaluateExpression(currentOperation);
 
-            if (result === "ERROR") {
-                state.input = "ERROR";
+            if (result === "SYNTAX ERROR") {
+                state.input = "SYNTAX ERROR";
                 return;
             }
 
@@ -115,22 +139,6 @@ export const operationSlice = createSlice({
         }
     }
 });
-
-function evaluateExpression(expr: string): string {
-    try {
-        console.log("Evaluating:", expr);
-        const result = eval(expr);
-        console.log("Result:", result);
-        if (/\/0(?![.0-9])/.test(expr) && !Number.isFinite(result)) {
-            return "ERROR";
-        }        
-        return result.toString();
-    } catch (error) {
-        console.error("Expression Error:", error);
-        
-        return "ERROR";
-    }
-}
 
 export const { appendInput, evaluate, clear, deleteLastCharacter, deleteOperationAndResult, clearHistory } = operationSlice.actions;
 export default operationSlice.reducer;

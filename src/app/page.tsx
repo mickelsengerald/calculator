@@ -3,6 +3,7 @@
 import CalculatorLogic from "@/components/calculatorLogic/CalculatorLogic";
 import CalculatorHistory from "@/components/calculatorHistory/CalculatorHistory";
 import {useState} from 'react'
+import styles from './page.module.scss';
 
 export type ToggleProps = {
   onToggle: () => void;
@@ -18,7 +19,7 @@ export default function Home() {
   
   return (
     <main>
-      <div>
+      <div className={styles.mainContainer}>
         {showCalculator ? 
           <CalculatorLogic onToggle={toggleShowCalculator} /> :
           <CalculatorHistory onToggle={toggleShowCalculator} />

@@ -8,11 +8,17 @@
 @mixin btnProperties {
     width: $btn-width;
     height: $btn-height;
+    font-size: 24px;
 }
 
 @mixin btnSwitch {
     width: $btn-switch-width;
     height: $btn-switch-height;
+    color: $color-blue;
+    background-color: transparent;
+    margin: 10px;
+    border: none;
+    font-size: 24px;
 }
 
 @mixin littleTextStyles {

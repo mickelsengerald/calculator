@@ -8,6 +8,8 @@
     align-items: center; 
     @include bgProperties;
     overflow: hidden; 
+    position: relative;
+    border-radius: 10px; 
 }
 
 .littleHistory { 
@@ -34,16 +36,15 @@
 .operationContainer button {
     background-color: transparent;
     border: none;
-    color: $color-blue;
+    color: $color-white;
     cursor: pointer;
 }
 
 .buttonSwitch{
-    color: $color-blue;
-    background-color: transparent;
-    margin: 10px;
-    margin-right: 320px;
-    border: none;
+    position: absolute;
+    left: 5px; 
+    top: 10px;
+    transform: translateY(-50%);
     @include btnSwitch;
 }
 

@@ -7,6 +7,8 @@ import { useRef } from "react";
 import { ToggleProps } from "@/app/page";
 import styles from "./calculatorLogic.module.scss";
 import { getJoke } from "@/helpers/getJoke";
+import {PiClockClockwiseBold} from 'react-icons/pi'
+import {GiCardJoker} from 'react-icons/gi'
 
 function CalculatorLogic({ onToggle }: ToggleProps) {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -17,7 +19,7 @@ function CalculatorLogic({ onToggle }: ToggleProps) {
     const history = useAppSelector((state) => state.operation.historyOp);
     const lastOperation = history[history.length - 1] || "";
 
-    const row1 = ["AC", "◁", "/", "*"];
+    const row1 = ["AC", "⋘", "/", "*"];
     const row2 = ["7", "8", "9", "-"];
     const row3 = ["4", "5", "6", "+"];
     const row4 = ["1", "2", "3", "("];
@@ -41,8 +43,8 @@ function CalculatorLogic({ onToggle }: ToggleProps) {
     return (
         <div className={styles.container}>
             <div className={styles.topButtons}>
-                <button onClick={getJoke} className={styles.buttonJoke}>🤣</button>
-                <button onClick={onToggle} className={styles.buttonSwitch}>◷</button>
+                <button onClick={getJoke} className={styles.buttonJoke}><GiCardJoker/></button>
+                <button onClick={onToggle} className={styles.buttonSwitch}><PiClockClockwiseBold/></button>
             </div>
             <h3 className={styles.littleText}>{lastOperation}</h3>
             <input className={styles.bigText} value={op} readOnly onKeyDown={handleKeyDown} />
@@ -58,7 +60,7 @@ function CalculatorLogic({ onToggle }: ToggleProps) {
                     onClick={() => {
                         if (btn === "AC") {
                         dispatch(operationSlice.actions.clear());
-                        } else if (btn === "◁") {
+                        } else if (btn === "⋘") {
                         dispatch(operationSlice.actions.deleteLastCharacter());
                         } else {
                         dispatch(operationSlice.actions.appendInput(btn));
