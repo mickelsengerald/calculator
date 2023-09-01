@@ -40,7 +40,7 @@ function CalculatorLogic({ onToggle }: ToggleProps) {
     return (
         <div className={styles.container}>
         <button onClick={onToggle} className={styles.buttonSwitch}>◷</button>
-        <h4 className={styles.littleText}>{lastOperation}</h4>
+        <h3 className={styles.littleText}>{lastOperation}</h3>
         <input className={styles.bigText} value={op} readOnly onKeyDown={handleKeyDown} />
 
         <div className={styles.divider}></div>

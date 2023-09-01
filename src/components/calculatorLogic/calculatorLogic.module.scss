@@ -24,6 +24,7 @@
     width: 100%; 
     text-align: right;
     height: 25px;
+    margin-left: -10px;
 }
 
 .bigText { 
@@ -33,6 +34,7 @@
     border: none; 
     width: 100%; 
     margin-bottom: 100px;
+    margin-left: -10px;
 }
 
 .buttonSwitch{
@@ -40,6 +42,7 @@
     background-color: transparent;
     margin: 10px;
     margin-left: 320px;
+    border: none;
     @include btnSwitch;
 }
 

@@ -3,6 +3,7 @@
 import { ToggleProps } from "@/app/page";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks"
 import { operationSlice } from "@/redux/features/operationSlice";
+import styles from "./calculatorHistory.module.scss";
 
 function CalculatorHistory({ onToggle }: ToggleProps) {
 
@@ -22,16 +23,22 @@ function CalculatorHistory({ onToggle }: ToggleProps) {
     }
 
     return (
-        <div >
-            <p>History</p>
-            {[...historyOp].reverse().map((operation, index) => (
-            <div key={index}>
-                <span>{operation} = {historyResult[historyOp.length - 1 - index]}</span>
-                <button onClick={() => handleDelete(index)}>Delete</button>
+        <div className={styles.container}>
+            <button onClick={onToggle} className={styles.buttonSwitch}>X</button>
+            <h3 className={styles.littleHistory}>History</h3>
+            <div className={styles.historyScrollContainer}>
+                {[...historyOp].reverse().map((operation, index) => (
+                    <div key={index}>
+                        <div className={styles.operationContainer}>
+                            <h3>{operation}</h3>
+                            <button onClick={() => handleDelete(index)}>Ǜ</button>
+                        </div>
+                        <h2 className={styles.bigText}>{historyResult[historyOp.length - 1 - index]}</h2>
+                        <div className={styles.divider}></div>
+                    </div>
+                ))}
             </div>
-            ))}
-            <button onClick={handleClear}>Clear</button>
-            <button onClick={onToggle}>Calculator</button>
+            <button onClick={handleClear} className={styles.clearButton}>Clear</button>
         </div>
     )
 }

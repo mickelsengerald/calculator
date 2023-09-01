@@ -1,0 +1,99 @@
+@import './../../styles/mixins';
+@import './../../styles/variables';
+
+.container {
+    background-color: $color-bg;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    @include bgProperties;
+    overflow: hidden; 
+}
+
+.littleHistory { 
+    @include littleTextStyles;
+    color: $color-blue;
+}
+
+.operationContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start; 
+    margin-left: -10px;
+}
+
+.operationContainer h3 {
+    margin-right: 10px; 
+    @include littleTextStyles;
+    color: $color-white;
+    width: 100%; 
+    text-align: right;
+}
+
+.operationContainer button {
+    background-color: transparent;
+    border: none;
+    color: $color-blue;
+    cursor: pointer;
+}
+
+.buttonSwitch{
+    color: $color-blue;
+    background-color: transparent;
+    margin: 10px;
+    margin-right: 320px;
+    border: none;
+    @include btnSwitch;
+}
+
+.divider {
+    width: 90%;
+    height: 2px;
+    background-color: $color-blue;
+    margin: 0 auto 20px auto; 
+}
+
+.clearButton {
+    text-decoration: underline;
+    border: none;
+    color: $color-blue;
+    background-color: transparent;
+    position: absolute;
+    bottom: 10px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.historyScrollContainer {
+    overflow-y: auto; 
+    width: 100%;
+    max-height: 530px; 
+    margin-bottom: 40px;
+
+    &::-webkit-scrollbar {
+        width: 3px; 
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent; 
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $color-blue;
+        border-radius: 1.5px; 
+    }
+
+    scrollbar-color: $color-blue transparent; 
+    scrollbar-width: thin; 
+}
+
+.bigText { 
+    @include bigTextStyles;
+    color: $color-blue;
+    background-color: transparent; 
+    border: none; 
+    width: 100%; 
+    margin-bottom: 50px;
+    margin-left: -10px;
+}
