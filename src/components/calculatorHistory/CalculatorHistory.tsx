@@ -22,12 +22,12 @@ function CalculatorHistory({ onToggle }: ToggleProps) {
     }
 
     return (
-        <div>
+        <div >
             <p>History</p>
             {[...historyOp].reverse().map((operation, index) => (
             <div key={index}>
                 <span>{operation} = {historyResult[historyOp.length - 1 - index]}</span>
-                <button onClick={() => handleDelete(index)}>Eliminar</button>
+                <button onClick={() => handleDelete(index)}>Delete</button>
             </div>
             ))}
             <button onClick={handleClear}>Clear</button>

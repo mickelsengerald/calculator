@@ -1,7 +1,7 @@
 "use client"
 
-import CalculatorLogic from "@/components/CalculatorLogic";
-import CalculatorHistory from "@/components/CalculatorHistory";
+import CalculatorLogic from "@/components/calculatorLogic/CalculatorLogic";
+import CalculatorHistory from "@/components/calculatorHistory/CalculatorHistory";
 import {useState} from 'react'
 
 export type ToggleProps = {
@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <main>
       <div>
-      {showCalculator ? 
+        {showCalculator ? 
           <CalculatorLogic onToggle={toggleShowCalculator} /> :
           <CalculatorHistory onToggle={toggleShowCalculator} />
         }

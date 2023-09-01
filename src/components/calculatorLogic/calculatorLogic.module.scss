@@ -1,0 +1,51 @@
+@import './../../styles/mixins';
+@import './../../styles/variables';
+
+.container {
+    background-color: $color-bg;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    @include bgProperties;
+}
+
+.button {
+    background-color: $color-bg;
+    border-radius: 10px; 
+    border-color: $color-blue;
+    color: $color-white; 
+    margin: 2px;
+    @include btnProperties;
+}
+
+.littleText { 
+    @include littleTextStyles;
+    color: $color-white;
+    width: 100%; 
+    text-align: right;
+    height: 25px;
+}
+
+.bigText { 
+    @include bigTextStyles;
+    color: $color-blue;
+    background-color: transparent; 
+    border: none; 
+    width: 100%; 
+    margin-bottom: 100px;
+}
+
+.buttonSwitch{
+    color: $color-blue;
+    background-color: transparent;
+    margin: 10px;
+    margin-left: 320px;
+    @include btnSwitch;
+}
+
+.divider {
+    width: 100%;
+    height: 2px;
+    background-color: $color-blue;
+    margin-bottom: 20px;
+}

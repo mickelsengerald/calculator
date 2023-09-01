@@ -1,0 +1,34 @@
+@mixin bgProperties {
+    width: $bg-width;
+    height: $bg-height;
+    top: $bg-top;
+    position: relative; 
+}
+
+@mixin btnProperties {
+    width: $btn-width;
+    height: $btn-height;
+}
+
+@mixin btnSwitch {
+    width: $btn-switch-width;
+    height: $btn-switch-height;
+}
+
+@mixin littleTextStyles {
+    font-family: map-get($little-text, font-family);
+    font-size: map-get($little-text, font-size);
+    font-weight: map-get($little-text, font-weight);
+    line-height: map-get($little-text, line-height);
+    letter-spacing: map-get($little-text, letter-spacing);
+    text-align: map-get($little-text, text-align);
+}
+
+@mixin bigTextStyles {
+    font-family: map-get($big-text, font-family);
+    font-size: map-get($big-text, font-size);
+    font-weight: map-get($big-text, font-weight);
+    line-height: map-get($big-text, line-height);
+    letter-spacing: map-get($big-text, letter-spacing);
+    text-align: map-get($big-text, text-align);
+}
