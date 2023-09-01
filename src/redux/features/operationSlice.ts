@@ -87,8 +87,8 @@ export const operationSlice = createSlice({
 
             if (action.payload === "%") {
                 const percentageOperation = state.input + "%";
-                const result = parseFloat(state.input) / 100;
-
+                const portion = parseFloat(state.input) / 100;
+                const result = parseFloat(portion.toFixed(3))
                 state.historyOp.push(percentageOperation);
                 state.historyResult.push(result.toString());
 
@@ -120,7 +120,7 @@ export const operationSlice = createSlice({
 
             state.historyResult.push(result);
             state.historyOp.push(currentOperation);
-            state.input = result.toString();
+            state.input = result
         },
         clear: (state) => {
             state.input = "";
