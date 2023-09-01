@@ -41,7 +41,6 @@
     color: $color-blue;
     background-color: transparent;
     margin: 10px;
-    margin-left: 320px;
     border: none;
     @include btnSwitch;
 }
@@ -51,4 +50,17 @@
     height: 2px;
     background-color: $color-blue;
     margin-bottom: 20px;
+}
+
+.topButtons {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+}
+
+.buttonJoke{
+    background-color: transparent;
+    margin: 10px;
+    border: none;
+    @include btnSwitch;
 }

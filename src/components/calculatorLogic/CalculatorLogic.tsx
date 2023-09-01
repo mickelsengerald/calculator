@@ -6,6 +6,7 @@ import { isValidCharacter } from "../../helpers/validators";
 import { useRef } from "react";
 import { ToggleProps } from "@/app/page";
 import styles from "./calculatorLogic.module.scss";
+import { getJoke } from "@/helpers/getJoke";
 
 function CalculatorLogic({ onToggle }: ToggleProps) {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -39,37 +40,40 @@ function CalculatorLogic({ onToggle }: ToggleProps) {
 
     return (
         <div className={styles.container}>
-        <button onClick={onToggle} className={styles.buttonSwitch}>◷</button>
-        <h3 className={styles.littleText}>{lastOperation}</h3>
-        <input className={styles.bigText} value={op} readOnly onKeyDown={handleKeyDown} />
-
-        <div className={styles.divider}></div>
-        
-        {[row1, row2, row3, row4, row5].map((row, index) => (
-            <div key={index} className={styles.row}>
-            {row.map((btn) => (
-                <button
-                className={styles.button}
-                key={btn}
-                onClick={() => {
-                    if (btn === "AC") {
-                    dispatch(operationSlice.actions.clear());
-                    } else if (btn === "◁") {
-                    dispatch(operationSlice.actions.deleteLastCharacter());
-                    } else {
-                    dispatch(operationSlice.actions.appendInput(btn));
-                    }
-                }}
-                >
-                {btn}
-                </button>
-            ))}
+            <div className={styles.topButtons}>
+                <button onClick={getJoke} className={styles.buttonJoke}>🤣</button>
+                <button onClick={onToggle} className={styles.buttonSwitch}>◷</button>
             </div>
-        ))}
+            <h3 className={styles.littleText}>{lastOperation}</h3>
+            <input className={styles.bigText} value={op} readOnly onKeyDown={handleKeyDown} />
 
-        <button className={styles.button} onClick={() => dispatch(operationSlice.actions.evaluate())}>
-            =
-        </button>
+            <div className={styles.divider}></div>
+            
+            {[row1, row2, row3, row4, row5].map((row, index) => (
+                <div key={index} className={styles.row}>
+                {row.map((btn) => (
+                    <button
+                    className={styles.button}
+                    key={btn}
+                    onClick={() => {
+                        if (btn === "AC") {
+                        dispatch(operationSlice.actions.clear());
+                        } else if (btn === "◁") {
+                        dispatch(operationSlice.actions.deleteLastCharacter());
+                        } else {
+                        dispatch(operationSlice.actions.appendInput(btn));
+                        }
+                    }}
+                    >
+                    {btn}
+                    </button>
+                ))}
+                </div>
+            ))}
+
+            <button className={styles.button} onClick={() => dispatch(operationSlice.actions.evaluate())}>
+                =
+            </button>
         </div>
     );
 }
