@@ -94,6 +94,19 @@ export const operationSlice = createSlice({
 
                 state.input = result.toString();
             } else if (isValidCharacter(action.payload)) {
+
+                const lastOperatorIndex = Math.max(
+                    state.input.lastIndexOf("+"),
+                    state.input.lastIndexOf("-"),
+                    state.input.lastIndexOf("*"),
+                    state.input.lastIndexOf("/")
+                );
+                const fragmentAfterLastOperator = state.input.slice(lastOperatorIndex + 1);
+
+                if (fragmentAfterLastOperator === "0" && !isNaN(Number(action.payload)) && action.payload !== "0" && action.payload !== "." && !fragmentAfterLastOperator.includes('.')) {
+                    state.input = state.input.slice(0, lastOperatorIndex + 1) + action.payload;
+                    return;
+                }
                 state.input += action.payload;
             }
         },
