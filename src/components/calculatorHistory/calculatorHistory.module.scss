@@ -2,7 +2,7 @@
 @import './../../styles/variables';
 
 .container {
-    background-color: $color-bg;
+    background: linear-gradient(0deg, $color-bg 95%, rgba(14, 24, 30, 0.95) 100%);
     display: flex;
     flex-direction: column;
     align-items: center; 
